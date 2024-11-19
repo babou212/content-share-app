@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
+import NavBar from "~/components/navbar";
 
 export const metadata: Metadata = {
   title: "Content Share Application",
@@ -14,7 +15,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body>{children}</body>
+      <body>
+       <div className="overflow-auto w-full">
+          <NavBar />
+          <main className="min-h-screen bg-gray-100 dark:bg-gray-900">{children}</main>
+        </div>
+      </body>
     </html>
   );
 }
