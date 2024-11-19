@@ -22,29 +22,30 @@ async function getAllDocs() {
 
 export default async function Docs() {
   const blogs = await getAllDocs();
-  console.log(blogs.Documents);
   return (
-      <div>
+    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 place-items-center">
       {Object.values(blogs.Documents).map((blog: any) => (
-        <div key={blog.id}>
-       <Card>
-        <CardTitle>
+        <div key={blog.id} className="relative h-96 w-96">
+       <Card className="w-full max-w-md pt-10 p-4">
+        <CardTitle className="space-y-1">
           <CardDescription>
             {blog.title}
           </CardDescription>
         </CardTitle>
-        <CardContent>
+        <CardContent className="space-y-1">
           <div>
             {blog.body}
           </div>
+          <div className="">
           <Image 
                 src={blog.image_url} 
                 alt={blog.title}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                width={250}
+                height={250}
                 quality={75}
                 style={{objectFit: "contain"}}
            />
+           </div>
         </CardContent>
        </Card>
        </div>
