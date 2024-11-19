@@ -10,6 +10,8 @@ import { Card, CardContent, CardDescription, CardTitle } from "../components/ui/
 
 import { getAllDocs } from "../app/api/getBlogs";
 
+export const dynamic = 'force-dynamic';
+
 export default async function Docs() {
   const blogs = await getAllDocs();
   return (
