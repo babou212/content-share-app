@@ -8,17 +8,7 @@
 import Image from "next/image";
 import { Card, CardContent, CardDescription, CardTitle } from "../components/ui/card";
 
-async function getAllDocs() {
-
-  const response = await fetch(`https://content-app.azurewebsites.net:443/api/get-all-docs/triggers/When_a_HTTP_request_is_received/invoke?api-version=2022-05-01&sp=%2Ftriggers%2FWhen_a_HTTP_request_is_received%2Frun&sv=1.0&sig=dOxrYCyv-tsHHpiZ50DV6y0mVzgGTXMzrAfXrAcguUI`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  const result = await response.json();
-  return result;
-}
+import { getAllDocs } from "../app/api/getBlogs";
 
 export default async function Docs() {
   const blogs = await getAllDocs();
