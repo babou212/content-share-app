@@ -34,7 +34,7 @@ export default function CreateBlog() {
     if (submitted == true) { ref.current?.reset() };
         
     return(
-        <div className="w-full max-w-md pt-10">
+        <div className="h-screen flex items-center justify-center">
             <form  ref={ref} onSubmit={() => setSubmitted(true)} action={formAction}>
                 <Card className="p-4">
                     <CardHeader className="space-y-1">

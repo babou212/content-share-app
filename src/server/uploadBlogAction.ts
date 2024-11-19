@@ -84,8 +84,6 @@ export async function blogUpload(prevState: any, formData: FormData) {
         "video_url": ""
     }
 
-    console.log(JSON.stringify(blog))
-
     await createDoc(JSON.stringify(blog));
 
     return {
