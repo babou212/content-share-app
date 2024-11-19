@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
@@ -24,7 +25,7 @@ export default async function Docs() {
   console.log(blogs.Documents);
   return (
       <div>
-      {Object.values(blogs.Documents).map((blog) => (
+      {Object.values(blogs.Documents).map((blog: any) => (
         <div key={blog.id}>
        <Card>
         <CardTitle>
