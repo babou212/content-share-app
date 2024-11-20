@@ -6,8 +6,8 @@ import {
   AppInsightsContext,
 } from "@microsoft/applicationinsights-react-js";
 
-let reactPlugin = new ReactPlugin();
-let appInsights = new ApplicationInsights({
+const reactPlugin = new ReactPlugin();
+const appInsights = new ApplicationInsights({
   config: {
     connectionString: process.env.APPLICATIONINSIGHTS_CONNECTION_STRING,
     enableAutoRouteTracking: true,
