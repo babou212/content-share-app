@@ -33,7 +33,7 @@ jobs:
           output_location: "" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
         env:
-          NEXT_PUBLIC_APP_APPLICATIONINSIGHTS_CONNECTION_STRING: "InstrumentationKey=0a69e609-a190-4142-bd1f-d8c054abcde3;IngestionEndpoint=https://uksouth-1.in.applicationinsights.azure.com/;LiveEndpoint=https://uksouth.livediagnostics.monitor.azure.com/;ApplicationId=6c8bf28e-6d81-400c-88ec-feecf0ce9c78"
+          NEXT_PUBLIC_APP_APPLICATIONINSIGHTS_CONNECTION_STRING: ${{ secrets.NEXT_PUBLIC_APP_APPLICATIONINSIGHTS_CONNECTION_STRING }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
