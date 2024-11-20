@@ -11,15 +11,6 @@ import { z } from "zod";
 
 import { updateDoc } from "../app/api/updateBlog";
 
-const MAX_FILE_SIZE = 50000000000;
-
-const ACCEPTED_IMAGE_TYPES = [
-  "image/jpeg",
-  "image/jpg",
-  "image/png",
-  "image/webp",
-];
-
 const schemaRegister = z.object({
     id: z.string().min(5).max(100, {
         message: "Please pass a valid id",
@@ -30,30 +21,26 @@ const schemaRegister = z.object({
     body: z.string().min(5).max(300, {
         message: "Please enter valid description",
       }),
-    image: z.any()
-    .refine((file) => {
-      if (file.size === 0 || file.name === undefined) return false;
-      else return true;
-    }, "Please update or add new image.")
-    .refine(
-      (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
-      ".jpg, .jpeg, .png and .webp files are accepted."
-    )
-    .refine((file) => file.size <= MAX_FILE_SIZE, `Max file size is 50MB.`),
+      image: z.any(),
+      video: z.any(),
 });
 
 export async function blogUpdate(prevState: any, formData: FormData) {
     const blobServiceClient = BlobServiceClient.fromConnectionString("DefaultEndpointsProtocol=https;AccountName=contentshareblog;AccountKey=eCgGj03x4MzQjn0NlE8bGte8y/AJ6vHePbdio7LgXbuWHJVdT8X8GOeSuUqyqWWOU7EHyJNTEAX4+AStyArBeQ==;EndpointSuffix=core.windows.net");
     const containerName = 'images';
+    const containerNameVideo = 'videos';
     const containerClient = blobServiceClient.getContainerClient(containerName);
+
+    const containerClientVideo = blobServiceClient.getContainerClient(containerNameVideo);
 
     const validatedFields = schemaRegister.safeParse({
       id: formData.get("id"),
       title: formData.get("title"),
       body: formData.get("body"),
-      image: formData.get("file"),    
+      image: formData.get("file"),
+      video: formData.get("video")
     });
-
+  
     if (!validatedFields.success) {
       return {
         ...prevState,
@@ -64,17 +51,28 @@ export async function blogUpdate(prevState: any, formData: FormData) {
     const uploadPathImg = "https://contentshareblog.blob.core.windows.net/images/";
     const uploadPathVideo = "https://contentshareblog.blob.core.windows.net/videos/";
 
-    const fileName = validatedFields.data.image.name;
-    const imageFilePath = uploadPathImg + fileName;
-  
+    const fileNameImg = validatedFields.data.image.name;
+    const imageFilePath = uploadPathImg + fileNameImg;
+
+    const fileNameVid = validatedFields.data.video.name;
+    const videoFilePath = uploadPathVideo + fileNameVid;
+
+    const videoFile = validatedFields.data.video as File;
+    const arrayBufferVideo = await videoFile.arrayBuffer();
+    const bufferVideo = new Uint8Array(arrayBufferVideo);
+
     const file = validatedFields.data.image as File;
     const arrayBuffer = await file.arrayBuffer();
     const buffer = new Uint8Array(arrayBuffer);
 
-    const blobName = fileName;
+    const blobNameImg = fileNameImg;
+    const blobNameVideo = fileNameVid;
 
-    const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+    const blockBlobClient = containerClient.getBlockBlobClient(blobNameImg);
     await blockBlobClient.upload(buffer, buffer.length);
+
+    const blockBlobClientVideo = containerClientVideo.getBlockBlobClient(blobNameVideo);
+    await blockBlobClientVideo.upload(bufferVideo, bufferVideo.length);
 
     const dateNow = Date.now(); 
 
@@ -82,10 +80,10 @@ export async function blogUpdate(prevState: any, formData: FormData) {
         "id": validatedFields.data.id,
         "title": validatedFields.data.title,
         "body": validatedFields.data.body,
-        "uploaded": dateNow.toString(),
+        "uploaded": formData.get("uploaded"),
         "updated": dateNow.toString(),
         "image_url": imageFilePath,
-        "video_url": ""
+        "video_url": videoFilePath
     }
 
     await updateDoc(JSON.stringify(blog));

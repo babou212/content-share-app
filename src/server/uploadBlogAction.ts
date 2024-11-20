@@ -11,15 +11,6 @@ import { z } from "zod";
 
 import { createDoc } from "../app/api/createBlog";
 
-const MAX_FILE_SIZE = 50000000000;
-
-const ACCEPTED_IMAGE_TYPES = [
-  "image/jpeg",
-  "image/jpg",
-  "image/png",
-  "image/webp",
-];
-
 const schemaRegister = z.object({
     title: z.string().min(5).max(100, {
         message: "Please enter a valid title",
@@ -27,21 +18,8 @@ const schemaRegister = z.object({
     body: z.string().min(0).max(300, {
         message: "Please enter valid description",
       }),
-    image: z.any()
-    .refine((file) => {
-      if (file.size === 0 || file.name === undefined) return false;
-      else return true;
-    }, "Please update or add new image.")
-    .refine(
-      (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
-      ".jpg, .jpeg, .png and .webp files are accepted."
-    )
-    .refine((file) => file.size <= MAX_FILE_SIZE, `Max file size is 50MB.`),
-    video: z.any()
-    .refine((video) => {
-      if (video.size === 0 || video.name === undefined) return false;
-      else return true;
-    }, "Please update or add new video.")
+    image: z.any(),
+    video: z.any(),
 });
 
 export async function blogUpload(prevState: any, formData: FormData) {
@@ -58,7 +36,7 @@ export async function blogUpload(prevState: any, formData: FormData) {
       image: formData.get("file"),
       video: formData.get("video")
     });
-  
+
     if (!validatedFields.success) {
       return {
         ...prevState,

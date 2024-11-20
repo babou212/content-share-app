@@ -13,5 +13,6 @@ export async function updateDoc(blog: unknown) {
   });
 
   const result = await response.json();
+  console.log(result);
   return result;
 }

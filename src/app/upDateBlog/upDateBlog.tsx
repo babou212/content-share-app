@@ -103,6 +103,7 @@ export default function UpdatePost(Blogs: any) {
                      </div>
                     </CardContent>
                     <input type="hidden" id="id" name="id" value={blog.id} />
+                    <input type="hidden" id="uploaded" name="uploaded" value={blog.uploaded} />
                     <CardFooter className="flex flex-col">
                         <Button className="w-full">Update Blog</Button>
                     </CardFooter>
