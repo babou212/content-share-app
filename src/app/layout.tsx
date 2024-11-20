@@ -4,6 +4,8 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import NavBar from "~/components/navbar";
 
+import AzureAppInsights from "..//components/azureApplicationInsights";
+
 export const metadata: Metadata = {
   title: "Content Share Application",
   description: "Content Share website for sharing blog content",
@@ -16,10 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
+      <AzureAppInsights>
        <div className="overflow-auto w-full">
           <NavBar />
           <main className="min-h-screen bg-gray-100 dark:bg-gray-900">{children}</main>
         </div>
+        </AzureAppInsights>
       </body>
     </html>
   );
