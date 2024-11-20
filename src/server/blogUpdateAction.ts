@@ -9,7 +9,7 @@ import { BlobServiceClient } from '@azure/storage-blob';
 
 import { z } from "zod";
 
-import { createDoc } from "../app/api/createBlog";
+import { updateDoc } from "../app/api/updateBlog";
 
 const MAX_FILE_SIZE = 50000000000;
 
@@ -21,10 +21,13 @@ const ACCEPTED_IMAGE_TYPES = [
 ];
 
 const schemaRegister = z.object({
+    id: z.string().min(5).max(100, {
+        message: "Please pass a valid id",
+      }),
     title: z.string().min(5).max(100, {
         message: "Please enter a valid title",
       }),
-    body: z.string().min(0).max(300, {
+    body: z.string().min(5).max(300, {
         message: "Please enter valid description",
       }),
     image: z.any()
@@ -39,18 +42,18 @@ const schemaRegister = z.object({
     .refine((file) => file.size <= MAX_FILE_SIZE, `Max file size is 50MB.`),
 });
 
-export async function blogUpload(prevState: any, formData: FormData) {
+export async function blogUpdate(prevState: any, formData: FormData) {
     const blobServiceClient = BlobServiceClient.fromConnectionString("DefaultEndpointsProtocol=https;AccountName=contentshareblog;AccountKey=eCgGj03x4MzQjn0NlE8bGte8y/AJ6vHePbdio7LgXbuWHJVdT8X8GOeSuUqyqWWOU7EHyJNTEAX4+AStyArBeQ==;EndpointSuffix=core.windows.net");
     const containerName = 'images';
     const containerClient = blobServiceClient.getContainerClient(containerName);
 
-
     const validatedFields = schemaRegister.safeParse({
+      id: formData.get("id"),
       title: formData.get("title"),
       body: formData.get("body"),
       image: formData.get("file"),    
     });
-  
+
     if (!validatedFields.success) {
       return {
         ...prevState,
@@ -76,7 +79,7 @@ export async function blogUpload(prevState: any, formData: FormData) {
     const dateNow = Date.now(); 
 
     const blog = {
-        "id": crypto.randomUUID(),
+        "id": validatedFields.data.id,
         "title": validatedFields.data.title,
         "body": validatedFields.data.body,
         "uploaded": dateNow.toString(),
@@ -85,7 +88,7 @@ export async function blogUpload(prevState: any, formData: FormData) {
         "video_url": ""
     }
 
-    await createDoc(JSON.stringify(blog));
+    await updateDoc(JSON.stringify(blog));
 
     return {
       ...prevState,

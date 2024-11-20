@@ -5,6 +5,7 @@ export default async function NavBar() {
         <nav className="flex items-center justify-between w-full p-10 text-xl font-semibold">
             <Link href="/" >Content Share</Link>
             <Link href="/addBlog" >Upload Blog</Link>
+            <Link href="/upDateBlog" >Update Blog</Link>
         </nav>
     );
 }
