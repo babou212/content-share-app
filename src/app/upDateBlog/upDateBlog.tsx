@@ -94,7 +94,7 @@ export default function UpdatePost(Blogs: any) {
                         />
                      </div>
                      <div className="space-y-2">
-                        <Label htmlFor="file">Video</Label>
+                        <Label htmlFor="video">Video</Label>
                         <Input
                             id="video"
                             name="video"

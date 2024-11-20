@@ -14,6 +14,17 @@ import DeleteButton from "../components/deleteButton";
 
 export const dynamic = 'force-dynamic';
 
+function video(blog: any) {
+  return (
+    <div>
+      <video width="320" height="240" controls preload="none">
+      <source src={blog.video_url} type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+      </div>
+  );
+}
+
 export default async function Docs() {
   const blogs = await getAllDocs();
   return (
@@ -30,7 +41,7 @@ export default async function Docs() {
           <div>
             {blog.body}
           </div>
-          <div className="">
+          <div>
           <Image 
                 src={blog.image_url} 
                 alt={blog.title}
@@ -40,6 +51,7 @@ export default async function Docs() {
                 style={{objectFit: "contain"}}
            />
            </div>
+           {blog.video_url && video(blog)}
         </CardContent>
         <DeleteButton id={blog.id}/>
        </Card>
