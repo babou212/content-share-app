@@ -10,6 +10,12 @@ export function AppInsightsProvider({ children }: { children: ReactNode }) {
     const appInsights = new ApplicationInsights({
       config: {
         connectionString: process.env.NEXT_PUBLIC_APP_APPLICATIONINSIGHTS_CONNECTION_STRING,
+        enableAutoRouteTracking: true,
+        enableCorsCorrelation: true,
+        enableRequestHeaderTracking: true,
+        enableResponseHeaderTracking: true,
+        enableAjaxPerfTracking: true,
+        isBrowserLinkTrackingEnabled: true,
         extensions: [reactPlugin],
         extensionConfig: {
           [reactPlugin.identifier]: {},
