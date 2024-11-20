@@ -21,7 +21,7 @@ export function AppInsightsProvider({ children }: { children: ReactNode }) {
     return () => {
       appInsights.unload();
     };
-  });
+  }, []);
 
   return <AppInsightsContext.Provider value={reactPlugin}>{children}</AppInsightsContext.Provider>;
 }
