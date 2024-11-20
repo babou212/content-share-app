@@ -58,10 +58,10 @@ export async function blogUpload(prevState: any, formData: FormData) {
       }
     }
 
-    const uploadPath = "https://contentshareblog.blob.core.windows.net/images/";
+    const uploadPathImg = "https://contentshareblog.blob.core.windows.net/images/";
 
     const fileName = validatedFields.data.image.name;
-    const imageFilePath = uploadPath + fileName;
+    const imageFilePath = uploadPathImg + fileName;
   
     const file = validatedFields.data.image as File;
     const arrayBuffer = await file.arrayBuffer();

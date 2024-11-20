@@ -13,6 +13,5 @@ export async function createDoc(blog: unknown) {
   });
 
   const result = await response.json();
-  console.log(result);
   return result;
 }

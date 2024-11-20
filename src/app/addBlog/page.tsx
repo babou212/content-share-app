@@ -8,7 +8,6 @@
 "use client"
 
 import React, { useActionState, useRef, useState } from "react";
-import { useFormState } from "react-dom";
 
 import { blogUpload } from "~/server/uploadBlogAction";
 
@@ -38,9 +37,9 @@ export default function CreateBlog() {
             <form  ref={ref} onSubmit={() => setSubmitted(true)} action={formAction}>
                 <Card className="p-4">
                     <CardHeader className="space-y-1">
-                    <CardTitle className="text-3xl font-bold">Upload Post</CardTitle>
+                    <CardTitle className="text-3xl font-bold">Upload Blog</CardTitle>
                         <CardDescription>
-                            Enter info below to create new Post
+                            Enter info below to create new Blog
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
@@ -54,7 +53,7 @@ export default function CreateBlog() {
                         />
                         </div>
                         <div className="space-y-2">
-                        <Label htmlFor="body">Post Description</Label>
+                        <Label htmlFor="body">Blog Description</Label>
                         <Textarea id="body"
                                   name="body" 
                                   placeholder="Type your message here." 
@@ -65,6 +64,14 @@ export default function CreateBlog() {
                         <Input
                             id="file"
                             name="file"
+                            type="file"
+                        />
+                     </div>
+                     <div className="space-y-2">
+                        <Label htmlFor="file">Video</Label>
+                        <Input
+                            id="video"
+                            name="video"
                             type="file"
                         />
                      </div>

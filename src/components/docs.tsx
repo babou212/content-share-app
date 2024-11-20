@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-async-client-component */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
@@ -9,6 +10,7 @@ import Image from "next/image";
 import { Card, CardContent, CardDescription, CardTitle } from "../components/ui/card";
 
 import { getAllDocs } from "../app/api/getBlogs";
+import DeleteButton from "../components/deleteButton";
 
 export const dynamic = 'force-dynamic';
 
@@ -39,6 +41,7 @@ export default async function Docs() {
            />
            </div>
         </CardContent>
+        <DeleteButton id={blog.id}/>
        </Card>
        </div>
        ))}
