@@ -22,13 +22,11 @@ jobs:
           node-version: '20.x'
 
       - name: npm install, build, and test
-        env:
-          NEXT_PUBLIC_APP_APPLICATIONINSIGHTS_CONNECTION_STRING: ${{ secrets.NEXT_PUBLIC_APP_APPLICATIONINSIGHTS_CONNECTION_STRING }}
         run: |
           npm install
           npm run build --if-present
           npm run test --if-present
-          
+
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
 
@@ -44,9 +42,7 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    permissions:
-      id-token: write #This is required for requesting the JWT
-
+    
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
@@ -56,13 +52,6 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
       
-      - name: Login to Azure
-        uses: azure/login@v2
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_04DFA1B1429640699F50CB200E5CE9B5 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C9BEC718F10841F7AF9F8004219BCEEF }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_C82C2ABF625B4FDB9A055854DB46D9A7 }}
-
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
@@ -70,4 +59,4 @@ jobs:
           app-name: 'content-share-blog'
           slot-name: 'Production'
           package: .
-          
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_490CFA26D72F4D5997C13149666EE6F5 }}
