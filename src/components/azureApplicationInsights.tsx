@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 "use client";
 
 import { ReactNode, useEffect } from "react";
@@ -27,7 +28,7 @@ export function AppInsightsProvider({ children }: { children: ReactNode }) {
     return () => {
       appInsights.unload();
     };
-  }, []);
+  });
 
   return <AppInsightsContext.Provider value={reactPlugin}>{children}</AppInsightsContext.Provider>;
 }
