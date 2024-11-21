@@ -4,7 +4,7 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import NavBar from "~/components/navbar";
 
-import { AppInsightsProvider } from "..//components/azureApplicationInsights";
+// import { AppInsightsProvider } from "..//components/azureApplicationInsights";
 
 export const metadata: Metadata = {
   title: "Content Share Application",
