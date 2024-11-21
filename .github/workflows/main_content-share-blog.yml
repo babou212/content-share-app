@@ -59,4 +59,8 @@ jobs:
           app-name: 'content-share-blog'
           slot-name: 'Production'
           package: .
+<<<<<<< HEAD
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_490CFA26D72F4D5997C13149666EE6F5 }}
+=======
+          
+>>>>>>> b1194ae (updated ci/cd process)

@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/2601b19d-b845-4957-a04a-24a246a32c2c/resourceGroups/appsvc_linux_centralus_basic/providers/Microsoft.Web/sites/content-share-blog",
+    "appService.deploySubpath": "."
+}
