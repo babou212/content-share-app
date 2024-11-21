@@ -41,7 +41,7 @@ export default async function Docs() {
           <div>
             {blog.body}
           </div>
-          <div>
+          <div className="p-2 content-center">
           <Image 
                 src={blog.image_url} 
                 alt={blog.title}

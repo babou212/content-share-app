@@ -18,12 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
-      <AppInsightsProvider>
+      {/* <AppInsightsProvider> */}
        <div className="overflow-auto w-full">
           <NavBar />
           <main className="min-h-screen bg-gray-100 dark:bg-gray-900">{children}</main>
         </div>
-      </AppInsightsProvider>
+      {/* </AppInsightsProvider> */}
       </body>
     </html>
   );
