@@ -17,7 +17,7 @@ export const dynamic = 'force-dynamic';
 function video(blog: any) {
   return (
     <div>
-      <video width="320" height="240" controls preload="none">
+      <video width="250" height="250" controls preload="none">
       <source src={blog.video_url} type="video/mp4" />
         Your browser does not support the video tag.
     </video>
@@ -28,16 +28,16 @@ function video(blog: any) {
 export default async function Docs() {
   const blogs = await getAllDocs();
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 place-items-center">
+    <div className="grid grid-cols-4 gap-4">
       {Object.values(blogs.Documents).map((blog: any) => (
-        <div key={blog.id} className="relative h-96 w-96">
-       <Card className="w-full max-w-md pt-10 p-4">
-        <CardTitle className="space-y-1">
+        <div key={blog.id} className="grid-element">
+       <Card className="w-full pt-10 p-4">
+        <CardTitle className="">
           <CardDescription>
             {blog.title}
           </CardDescription>
         </CardTitle>
-        <CardContent className="space-y-1">
+        <CardContent className="">
           <div>
             {blog.body}
           </div>
@@ -45,10 +45,9 @@ export default async function Docs() {
           <Image 
                 src={blog.image_url} 
                 alt={blog.title}
-                width={250}
-                height={250}
+                width={150}
+                height={150}
                 quality={75}
-                style={{objectFit: "contain"}}
            />
            </div>
            {blog.video_url && video(blog)}
