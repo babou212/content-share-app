@@ -27,8 +27,8 @@ jobs:
         run: |
           npm install
 
-      - name: 'Login to Azure Subscription' 
-        uses: azure/login@v1
+      - name: Login to Azure Subscription 
+        uses: azure/login@v2
         with:
             client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_FCDE7D3D05554448A21B1C97EDA0149A }}
             tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_84B6F3DEF4B74259AFC6E61E2C821B96 }}
