@@ -10,7 +10,7 @@ export function AppInsightsProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const appInsights = new ApplicationInsights({
       config: {
-        connectionString: process.env.NEXT_PUBLIC_APP_APPLICATIONINSIGHTS_CONNECTION_STRING,
+        connectionString: process.env.NEXT_PUBLIC_APP_APPLICATION_INSIGHTS_CONNECTION_STRING,
         enableAutoRouteTracking: true,
         enableCorsCorrelation: true,
         enableRequestHeaderTracking: true,

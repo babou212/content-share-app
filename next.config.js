@@ -2,7 +2,7 @@ import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
 const config = {
-  output: "standalone",
+  NEXT_PUBLIC_APP_APPLICATION_INSIGHTS_CONNECTION_STRING: process.env.NEXT_PUBLIC_APP_APPLICATION_INSIGHTS_CONNECTION_STRING,
   experimental: {
     serverActions: {
       bodySizeLimit: '2000mb',
