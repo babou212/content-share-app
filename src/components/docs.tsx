@@ -16,12 +16,12 @@ export const dynamic = 'force-dynamic';
 
 function video(blog: any) {
   return (
-    <div>
-      <video width="250" height="250" controls preload="none">
+    <div >
+      <video width="200" height="200" controls preload="none" className="w-full aspect-video">
       <source src={blog.video_url} type="video/mp4" />
         Your browser does not support the video tag.
     </video>
-      </div>
+    </div>
   );
 }
 
@@ -31,28 +31,30 @@ export default async function Docs() {
     <div className="grid grid-cols-4 gap-4">
       {Object.values(blogs.Documents).map((blog: any) => (
         <div key={blog.id} className="grid-element">
-       <Card className="w-full pt-10 p-4">
-        <CardTitle className="">
+       <Card className="w-full h-full pt-10 p-4">
+        <CardTitle>
           <CardDescription>
             {blog.title}
           </CardDescription>
         </CardTitle>
-        <CardContent className="">
+        <CardContent>
           <div>
             {blog.body}
           </div>
-          <div className="p-2 content-center">
+          <div className="flex flex-row justify-center items-center p-10 w-full">
           <Image 
                 src={blog.image_url} 
                 alt={blog.title}
-                width={150}
-                height={150}
-                quality={75}
+                width={200}
+                height={200}
+                quality={70}
            />
            </div>
            {blog.video_url && video(blog)}
+           <div className="flex flex-row justify-center items-center p-10">
+            <DeleteButton id={blog.id}/>
+           </div>
         </CardContent>
-        <DeleteButton id={blog.id}/>
        </Card>
        </div>
        ))}
