@@ -8,7 +8,7 @@ const config = {
   experimental: {
     serverActions: {
       bodySizeLimit: '2000mb',
-      allowedOrigins: ["localhost:3000", "proud-pebble-0aabd6c03.5.azurestaticapps.net", "www.proud-pebble-0aabd6c03.5.azurestaticapps.net"],
+      allowedOrigins: ["localhost:3000", "localhost:8080", "content-blog-share-b2h5fkf6btd0gxgb.ukwest-01.azurewebsites.net", "www.content-blog-share-b2h5fkf6btd0gxgb.ukwest-01.azurewebsites.net"],
     }},
     images: {
     remotePatterns: [
