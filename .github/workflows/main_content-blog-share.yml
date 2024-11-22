@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: '20.x'
         env:
-            NEXT_PUBLIC_APP_APPLICATIONINSIGHTS_CONNECTION_STRING: ${{ secrets.NEXT_PUBLIC_APP_APPLICATION_INSIGHTS_CONNECTION_STRING }}
+            NEXT_PUBLIC_APP_APPLICATION_INSIGHTS_CONNECTION_STRING: ${{ secrets.NEXT_PUBLIC_APP_APPLICATION_INSIGHTS_CONNECTION_STRING }}
       - name: npm install, build, and test
         run: |
           npm install
