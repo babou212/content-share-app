@@ -3,7 +3,7 @@ import "./src/env.js";
 /** @type {import("next").NextConfig} */
 const config = {
   env: {
-    NEXT_PUBLIC_APP_APPLICATION_INSIGHTS_CONNECTION_STRING: process.env.NEXT_PUBLIC_APP_APPLICATION_INSIGHTS_CONNECTION_STRING,
+    NEXT_PUBLIC_APPLICATION_INSIGHTS_CONNECTION_STRING: process.env.NEXT_PUBLIC_APPLICATION_INSIGHTS_CONNECTION_STRING,
   },
   experimental: {
     serverActions: {
