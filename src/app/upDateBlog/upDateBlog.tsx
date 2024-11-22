@@ -17,6 +17,8 @@ import { Label } from "../../components/ui/label";
 import { Input } from "../../components/ui/input";
 import { blogUpdate } from "~/server/blogUpdateAction";
 
+export const dynamic = 'force-dynamic';
+
 const INITIAL_STATE = {
     data: null,
   };
