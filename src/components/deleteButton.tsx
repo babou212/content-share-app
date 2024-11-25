@@ -3,7 +3,7 @@
 import { deleteDoc } from "../app/api/deleteBlog";
 import { Button } from "./ui/button";
 
-export default function DeleteButton(props: {id: unknown}) {
+export default function DeleteButton(props: {id: string}) {
 
     const handleClick = async () => {
         await deleteDoc(props.id)

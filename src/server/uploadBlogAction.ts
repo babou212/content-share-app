@@ -77,7 +77,7 @@ export async function blogUpload(prevState: any, formData: FormData) {
         "title": validatedFields.data.title,
         "body": validatedFields.data.body,
         "uploaded": dateNow.toString(),
-        "updated": dateNow.toString(),
+        "updated": "",
         "image_url": imageFilePath,
         "video_url": videoFilePath
     }

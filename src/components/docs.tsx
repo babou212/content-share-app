@@ -25,8 +25,21 @@ function video(blog: any) {
   );
 }
 
+function convertDate(date: string) {
+  const d = new Date(parseInt(date, 10));
+
+  const displayDate = d.toDateString();
+
+  return (
+    <>
+      {displayDate}
+    </>
+  );
+};
+
 export default async function Docs() {
   const blogs = await getAllDocs();
+
   return (
     <div className="grid grid-cols-4 gap-4">
       {Object.values(blogs.Documents).map((blog: any) => (
@@ -51,6 +64,10 @@ export default async function Docs() {
            />
            </div>
            {blog.video_url && video(blog)}
+           <div className="p-2">
+            <p>Uploaded: {blog.uploaded && convertDate(blog.uploaded)}</p>
+            <p>Updated: {blog.updated && convertDate(blog.updated)}</p>
+           </div>
            <div className="flex flex-row justify-center items-center p-10">
             <DeleteButton id={blog.id}/>
            </div>
