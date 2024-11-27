@@ -50,9 +50,9 @@ export default function UpdatePost(Blogs: any) {
             <form ref={ref} onSubmit={() => setSubmitted(true)} action={formAction}>
                 <Card className="p-4">
                     <CardHeader className="space-y-1">
-                    <div className="w-max">
+                    <div>
                         <Select onValueChange={(val: any) => setBlog(JSON.parse(val))}>
-                            <SelectTrigger className="w-[180px]">
+                            <SelectTrigger className="w-full">
                                 <SelectValue placeholder="Select Post to Update" />
                             </SelectTrigger>
                             <SelectContent>

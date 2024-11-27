@@ -17,7 +17,7 @@ export const dynamic = 'force-dynamic';
 function video(blog: any) {
   return (
     <div >
-      <video width="200" height="200" controls preload="none" className="w-full aspect-video">
+      <video width="200" height="200" controls autoPlay muted playsInline preload="none" className="w-full aspect-video">
       <source src={blog.video_url} type="video/mp4" />
         Your browser does not support the video tag.
     </video>
@@ -27,7 +27,6 @@ function video(blog: any) {
 
 function convertDate(date: string) {
   const d = new Date(parseInt(date, 10));
-
   const displayDate = d.toDateString();
 
   return (
@@ -66,7 +65,7 @@ export default async function Docs() {
            {blog.video_url && video(blog)}
            <div className="p-2">
             <p>Uploaded: {blog.uploaded && convertDate(blog.uploaded)}</p>
-            <p>Updated: {blog.updated && convertDate(blog.updated)}</p>
+            <p>{blog.updated && "Updated:" } {blog.updated && convertDate(blog.updated)}</p>
            </div>
            <div className="flex flex-row justify-center items-center p-10">
             <DeleteButton id={blog.id}/>
