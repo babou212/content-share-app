@@ -26,7 +26,7 @@ const schemaRegister = z.object({
 });
 
 export async function blogUpdate(prevState: any, formData: FormData) {
-    const blobServiceClient = BlobServiceClient.fromConnectionString("DefaultEndpointsProtocol=https;AccountName=contentshareblog;AccountKey=eCgGj03x4MzQjn0NlE8bGte8y/AJ6vHePbdio7LgXbuWHJVdT8X8GOeSuUqyqWWOU7EHyJNTEAX4+AStyArBeQ==;EndpointSuffix=core.windows.net");
+    const blobServiceClient = BlobServiceClient.fromConnectionString("DefaultEndpointsProtocol=https;AccountName=contentshareappstore;AccountKey=gX3pdbmvSVqrPNCvF2Qn2mtJxpBnA23K44AHGg2kfU8jCJNQ0hFkeMuczmC/qo/GJeCV9ro0+VDx+ASt2U2cYg==;EndpointSuffix=core.windows.net");
     const containerName = 'images';
     const containerNameVideo = 'videos';
     const containerClient = blobServiceClient.getContainerClient(containerName);
@@ -48,8 +48,8 @@ export async function blogUpdate(prevState: any, formData: FormData) {
       }
     }
 
-    const uploadPathImg = "https://contentshareblog.blob.core.windows.net/images/";
-    const uploadPathVideo = "https://contentshareblog.blob.core.windows.net/videos/";
+    const uploadPathImg = "https://contentshareappstore.blob.core.windows.net/images/";
+    const uploadPathVideo = "https://contentshareappstore.blob.core.windows.net/videos/";
 
     const fileNameImg = validatedFields.data.image.name;
     const imageFilePath = uploadPathImg + fileNameImg;

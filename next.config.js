@@ -8,13 +8,13 @@ const config = {
   experimental: {
     serverActions: {
       bodySizeLimit: '2000mb',
-      allowedOrigins: ["localhost:3000", "localhost:8080", "content-blog-share-b2h5fkf6btd0gxgb.ukwest-01.azurewebsites.net", "www.content-blog-share-b2h5fkf6btd0gxgb.ukwest-01.azurewebsites.net"],
+      allowedOrigins: ["localhost:3000", "localhost:8080", "contentshareappstore.blob.core.windows.net", "www.contentshareappstore.blob.core.windows.net"],
     }},
     images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: "contentshareblog.blob.core.windows.net",
+        hostname: "contentshareappstore.blob.core.windows.net",
         port: '',
         pathname: '/images/**',
       },
