@@ -9,6 +9,8 @@
 import { getBlogs } from "../upDateBlog/blogs";
 import UpdateBlog  from "../upDateBlog/upDateBlog";
 
+export const dynamic = 'force-dynamic';
+
 export default async function UpdatePostPage() {
     
     const blogs = await getBlogs();
